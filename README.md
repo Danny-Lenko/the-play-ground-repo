@@ -11,7 +11,16 @@ Here I'm gonna be practicing coding
 snake.forEach( (index) => { grid[index].classList.add('snake') });
 ```
 
-2)
+2) An example of how to listen to keyboard events (used to control a snake)
+```js
+function controlSnake(event) {
+   if (event.key === 'ArrowDown' || event.key === 'Down') {
+      direction = 10;
+   }
+}
+// the event listener has to be added
+document.addEventListener('keyup', controlSnake);
+```
 
 
 ### Useful resources
