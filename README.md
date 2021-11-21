@@ -30,3 +30,8 @@ document.addEventListener('keyup', controlSnake);
 
 - [Git + GitHub](https://www.youtube.com/watch?v=RGOj5yH7evk) - the basic git commands (Youtube).
 - [The Markdown Guide](https://www.markdownguide.org/) - for more help with writing markdown (Article).
+
+
+## Here I will start testing new functionality with the GitHub Desktop from another IP
+
+### I am going to add a space-tourism website to practice a keyboard navigation
