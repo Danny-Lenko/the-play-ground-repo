@@ -92,3 +92,6 @@ function eatApple() {
       intervalID = setInterval(moveSnake, defaultSpeed);
    }
 }
+
+
+// think need to add this comment to make a merge
