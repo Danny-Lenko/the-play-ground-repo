@@ -97,10 +97,8 @@ let model = {
    },
 
    divideDice: function(randomNum) {
-      let denom = Math.floor(Math.random() * (6 - 1) + 2);
-      let firstDice = Math.floor(randomNum / denom);
+      let firstDice = Math.floor(Math.random() * 6 + 1);
       let secondDice = randomNum - firstDice;
-      console.log(denom);
       console.log(firstDice);
       console.log(secondDice);
    },
