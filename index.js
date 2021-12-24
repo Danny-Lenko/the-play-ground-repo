@@ -87,9 +87,22 @@ let model = {
       {score: 0, dice: 0},
       {score: 0, dice: 0},
    ],
+   randomNum: 0,
 
    getRandomNum: function() {
-      return Math.floor(Math.random() * 6 + 1);
+      let randomFig = Math.floor(Math.random() * 11 + 2);
+      this.randomNum = randomFig;
+      console.log(this.randomNum);
+      return randomFig;
+   },
+
+   divideDice: function(randomNum) {
+      let denom = Math.floor(Math.random() * (6 - 1) + 2);
+      let firstDice = Math.floor(randomNum / denom);
+      let secondDice = randomNum - firstDice;
+      console.log(denom);
+      console.log(firstDice);
+      console.log(secondDice);
    },
 
    sumPlayerScore: function(player) {
@@ -349,4 +362,8 @@ function drawNoWinnerMessage(winners) {
       document.querySelector('#message').innerHTML = mainContent;
    }
 }
+
+model.divideDice(10);
+model.divideDice(9);
+model.divideDice(8);
 
