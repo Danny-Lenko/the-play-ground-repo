@@ -1,0 +1,70 @@
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="index.css">
+        <title>Roll Dice Game</title>
+    </head>
+    <body>
+        <div class="overlay">
+            <div class="overlay__content">
+                <h2 class="overlay__h2">Choose the number of players</h2>
+                <div class="buttons-field">
+                    <button id="twoPlayersBtn" class="overlay__btn">2 Players</button>
+                    <button id="threePlayersBtn" class="overlay__btn">3 Players</button>
+                    <button id="fourPlayersBtn" class="overlay__btn">4 Players</button>
+                    <button id="fivePlayersBtn" class="overlay__btn">5 Players</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="draw">
+            <div class="draw__content">
+                <h2 class="draw__h2">DRAW!</h2>
+                <h2 id="drawMessage"></h2>
+                <div class="draw__players" id="drawPlayers"></div>
+                <button class="drawBtn" id="drawRoll">Roll Dice 🎲</button>
+                <button class="drawBtn" id="drawClose">Close ❎</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1 id="roundEl" style="font-size: 1.2rem; margin-top: 0;">Round # 1</h1>
+            <h2 id="message" style="margin-bottom: 0;">Player 1 Turn</h2>
+            <div class="players">
+                <div id="player1" class="playerEl">
+                    <h2>Score: 
+                        <span id="player1Scoreboard" class="scoreboard">0</span>
+                    </h2>
+                    <div id="player1Dice" class="dice" role="active">-</div>
+                </div>
+                <div id="player2" class="playerEl">
+                    <h2>Score: 
+                        <span id="player2Scoreboard" class="scoreboard">0</span>
+                    </h2>
+                    <div id="player2Dice" class="dice">-</div>
+                </div>
+                <div id="player3" class="playerEl" style="display: none;">
+                    <h2>Score: 
+                        <span id="player3Scoreboard" class="scoreboard">0</span>
+                    </h2>
+                    <div id="player3Dice" class="dice">-</div>
+                </div>
+                <div id="player4" class="playerEl" style="display: none;">
+                    <h2>Score: 
+                        <span id="player4Scoreboard" class="scoreboard">0</span>
+                    </h2>
+                    <div id="player4Dice" class="dice">-</div>
+                </div>
+                <div id="player5" class="playerEl" style="display: none;">
+                    <h2>Score: 
+                        <span id="player5Scoreboard" class="scoreboard">0</span>
+                    </h2>
+                    <div id="player5Dice" class="dice">-</div>
+                </div>
+            </div>
+
+            <button id="rollBtn">Roll Dice 🎲</button>
+            <button id="resetBtn">Reset Game 🔁</button>
+        </div>   
+        <script src="index.js"></script>
+    </body>
+</html>

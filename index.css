@@ -1,0 +1,143 @@
+html, body { 
+    --color-1: #a8e6cf;
+    --color-2: #dcedc1; 
+    --color-3: #ffd3b6; 
+    --color-4: #ffaaa5; 
+    --color-5: #ff8b94;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 50px;
+    background-image: linear-gradient(135deg, var(--color-1) , var(--color-2));
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    color: black;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.container {
+    min-width: 400px;
+    text-align: center;
+    margin: 0 15%;
+    background-color: white;
+    box-shadow: -2px 6px 18px 3px rgba(0,0,0,0.75);
+    padding: 50px;
+    padding-top: 30px;
+}
+
+.players,
+.draw__players {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dice,
+.draw__dice {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-3);
+    margin: 0 auto;
+    font-size: 80px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+
+button {
+    color: #fff;
+    padding: 20px 30px;
+    font-size: 20px;
+    margin: 40px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#rollBtn,
+#drawRoll {
+    background-color: var(--color-5);
+}
+
+#resetBtn,
+#drawClose {
+    background-color: var(--color-4);
+}
+
+button:focus {
+    outline: none;
+}
+
+#resetBtn,
+#drawClose {
+    display: none;
+}
+
+.active {
+    box-shadow: -2px 6px 18px 3px rgba(0,0,0,0.75);
+}
+
+[role="active"] {
+    box-shadow: -2px 6px 18px 3px rgba(0,0,0,0.75);
+}
+
+.overlay {
+    height: 120%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(23, 32, 42, 0.7);
+    display: flex;
+    justify-content: center;
+}
+
+.overlay__content {
+    margin-top: 70px;
+    width: 70%;
+    height: 60%;
+    background: var(--color-3);
+    text-align: center;
+}
+
+.overlay__h2 {
+    margin-top: 100px;
+}
+
+.overlay__btn {
+    margin: 50px 25px;
+    background: var(--color-5);
+}
+
+/* ======
+    draw overlay styling 
+====== */
+
+.draw {
+    height: 120%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(23, 32, 42, 0.7);
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+.draw__content {
+    margin-top: 50px;
+    width: 70%;
+    height: 70%;
+    background: var(--color-2);
+    text-align: center;
+}
