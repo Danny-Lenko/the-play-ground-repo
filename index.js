@@ -18,9 +18,15 @@ window.onload = function() {
 let view = {
 
    displayResult: function(player) {
-      const diceList = document.getElementsByClassName('dice');
-      diceList[player].innerHTML = model.players[player].dice;
-      this.displayShade(diceList, player)
+      const diceWrappers = document.getElementsByClassName('dice-wrapper');
+      const dice1 = diceWrappers[player];
+      const playerDices = document.getElementsByClassName('dice');
+      const playerDice1 = dice1.playerDices[0];
+      console.log(playerDice1);
+   
+      // dice1.innerHTML = model.dices[0];
+      // dice2.innerHTML = model.dices[1];
+      this.displayShade(diceWrappers, player)
    },
 
    displayShade: function(list, player) {
@@ -88,6 +94,7 @@ let model = {
       {score: 0, dice: 0},
    ],
    randomNum: 0,
+   dices: [],
 
    getRandomNum: function() {
       let randomFig = Math.floor(Math.random() * 11 + 2);
@@ -99,8 +106,9 @@ let model = {
    divideDice: function(randomNum) {
       let firstDice = Math.floor(Math.random() * 6 + 1);
       let secondDice = randomNum - firstDice;
-      console.log(firstDice);
-      console.log(secondDice);
+      this.dices.push(firstDice);
+      this.dices.push(secondDice);
+      console.log(this.dices);
    },
 
    sumPlayerScore: function(player) {
