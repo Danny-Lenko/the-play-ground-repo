@@ -19,13 +19,9 @@ let view = {
 
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
-      const dice1 = diceWrappers[player];
-      const playerDices = document.getElementsByClassName('dice');
-      const playerDice1 = dice1.playerDices[0];
-      console.log(playerDice1);
-   
-      // dice1.innerHTML = model.dices[0];
-      // dice2.innerHTML = model.dices[1];
+      let diceList = diceWrappers[player].childNodes;
+      // console.log(diceList);
+
       this.displayShade(diceWrappers, player)
    },
 
@@ -100,6 +96,8 @@ let model = {
       let randomFig = Math.floor(Math.random() * 11 + 2);
       this.randomNum = randomFig;
       console.log(this.randomNum);
+      this.divideDice(this.randomNum);
+      console.log(this.dices);
       return randomFig;
    },
 
@@ -108,7 +106,7 @@ let model = {
       let secondDice = randomNum - firstDice;
       this.dices.push(firstDice);
       this.dices.push(secondDice);
-      console.log(this.dices);
+      // console.log(this.dices);
    },
 
    sumPlayerScore: function(player) {
@@ -369,7 +367,7 @@ function drawNoWinnerMessage(winners) {
    }
 }
 
-model.divideDice(10);
-model.divideDice(9);
-model.divideDice(8);
+// model.divideDice(10);
+// model.divideDice(9);
+// model.divideDice(8);
 
