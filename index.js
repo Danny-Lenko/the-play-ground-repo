@@ -95,9 +95,7 @@ let model = {
    getRandomNum: function() {
       let randomFig = Math.floor(Math.random() * 11 + 2);
       this.randomNum = randomFig;
-      console.log(this.randomNum);
       this.divideDice(this.randomNum);
-      console.log(this.dices);
       return randomFig;
    },
 
@@ -119,7 +117,6 @@ let model = {
       }
       this.dices.push(firstDice);
       this.dices.push(secondDice);
-      // console.log(this.dices);
    },
 
    sumPlayerScore: function(player) {
