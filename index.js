@@ -105,15 +105,16 @@ let model = {
       let firstDice = 0;
       let secondDice = 0;
       if (randomNum <= 6) {
-         firstDice = Math.floor(Math.random() * randomNum + 1);
+         firstDice = Math.floor(Math.random() * (randomNum - 1) + 1);
          secondDice = randomNum - firstDice;
-      } else {
-         while (firstDice <= 6 && secondDice <= 6) {
-            let counter = 1;
-            firstDice = Math.floor(Math.random() * counter + 1);
-            secondDice = randomNum - firstDice;
-            counter++;
-         }
+      } 
+      else {
+      //    while (firstDice <= 6 && secondDice <= 6) {
+      //       let counter = 1;
+      //       firstDice = Math.floor(Math.random() * counter + 1);
+      //       secondDice = randomNum - firstDice;
+      //       counter++;
+      //    }
       }
       this.dices.push(firstDice);
       this.dices.push(secondDice);
