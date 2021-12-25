@@ -107,14 +107,15 @@ let model = {
       if (randomNum <= 6) {
          firstDice = Math.floor(Math.random() * (randomNum - 1) + 1);
          secondDice = randomNum - firstDice;
-      } 
-      else {
-      //    while (firstDice <= 6 && secondDice <= 6) {
-      //       let counter = 1;
-      //       firstDice = Math.floor(Math.random() * counter + 1);
-      //       secondDice = randomNum - firstDice;
-      //       counter++;
-      //    }
+      }  else {
+            let counter = 1;
+            do {
+               firstDice = Math.floor(Math.random() * counter + 1);
+               secondDice = randomNum - firstDice;
+               counter++;
+            }
+            while (firstDice > 6 || secondDice > 6) {
+         }
       }
       this.dices.push(firstDice);
       this.dices.push(secondDice);
