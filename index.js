@@ -18,9 +18,11 @@ window.onload = function() {
 let view = {
 
    displayResult: function(player) {
-      const diceList = document.getElementsByClassName('dice');
-      diceList[player].innerHTML = model.players[player].dice;
-      this.displayShade(diceList, player)
+      const diceWrappers = document.getElementsByClassName('dice-wrapper');
+      let diceList = diceWrappers[player].childNodes;
+      // console.log(diceList);
+
+      this.displayShade(diceWrappers, player)
    },
 
    displayShade: function(list, player) {
@@ -88,19 +90,33 @@ let model = {
       {score: 0, dice: 0},
    ],
    randomNum: 0,
+   dices: [],
 
    getRandomNum: function() {
       let randomFig = Math.floor(Math.random() * 11 + 2);
       this.randomNum = randomFig;
-      console.log(this.randomNum);
+      this.divideDice(this.randomNum);
       return randomFig;
    },
 
    divideDice: function(randomNum) {
-      let firstDice = Math.floor(Math.random() * 6 + 1);
-      let secondDice = randomNum - firstDice;
-      console.log(firstDice);
-      console.log(secondDice);
+      let firstDice = 0;
+      let secondDice = 0;
+      if (randomNum <= 6) {
+         firstDice = Math.floor(Math.random() * (randomNum - 1) + 1);
+         secondDice = randomNum - firstDice;
+      }  else {
+            let counter = 1;
+            do {
+               firstDice = Math.floor(Math.random() * counter + 1);
+               secondDice = randomNum - firstDice;
+               counter++;
+            }
+            while (firstDice > 6 || secondDice > 6) {
+         }
+      }
+      this.dices.push(firstDice);
+      this.dices.push(secondDice);
    },
 
    sumPlayerScore: function(player) {
@@ -361,7 +377,7 @@ function drawNoWinnerMessage(winners) {
    }
 }
 
-model.divideDice(10);
-model.divideDice(9);
-model.divideDice(8);
+// model.divideDice(10);
+// model.divideDice(9);
+// model.divideDice(8);
 
