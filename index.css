@@ -11,6 +11,11 @@ html, body {
     box-sizing: border-box;
 }
 
+img {
+    display: block;
+    width: 100%;
+}
+
 body {
     padding-top: 50px;
     background-image: linear-gradient(135deg, var(--color-1) , var(--color-2));

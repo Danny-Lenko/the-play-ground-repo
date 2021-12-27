@@ -16,12 +16,17 @@ window.onload = function() {
 }
 
 let view = {
+   diceImg: ['tyt riba', '1.svg', '2.svg', '3.svg', '4.svg', '5.svg', '6.svg'],
 
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
       let diceList = diceWrappers[player].children;
-      diceList[0].innerHTML = model.dices[0];
-      diceList[1].innerHTML = model.dices[1];
+      diceList[0].innerHTML = `
+         <img src=${this.diceImg[model.dices[0]]} alt=''>
+      `;
+      diceList[1].innerHTML = `
+         <img src=${this.diceImg[model.dices[1]]} alt=''>
+      `;
       this.displayShade(diceWrappers, player);
    },
 
@@ -65,7 +70,9 @@ let view = {
       const drawDiceList = document.getElementsByClassName('draw__dice');
       for (let i = 0; i < drawDiceList.length; i++) {
          if (controller.winnersScores[i]) {
-            drawDiceList[i].innerHTML = controller.winnersScores[i];
+            drawDiceList[i].innerHTML = `
+            <img src=${this.diceImg[controller.winnersScores[i]]} alt=''>
+         `;
          }
       }
       return drawDiceList.length;
