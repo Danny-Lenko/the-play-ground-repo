@@ -7,7 +7,7 @@ window.onload = function() {
    document.querySelector('#drawRoll').addEventListener('click', controller.drawRollDice);
    document.querySelector('#drawClose').addEventListener('click', function() {
       document.querySelector('.draw').style.display="none";
-   })
+   });
 
    document.querySelector('#twoPlayersBtn').addEventListener('click', model.start2Players);
    document.querySelector('#threePlayersBtn').addEventListener('click', model.start3Players);
@@ -16,12 +16,18 @@ window.onload = function() {
 }
 
 let view = {
+   diceImg: ['tyt riba', '1.svg', '2.svg', '3.svg', '4.svg', '5.svg', '6.svg'],
 
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
-      let diceList = diceWrappers[player].children;
-      diceList[0].innerHTML = model.dices[0];
-      diceList[1].innerHTML = model.dices[1];
+      const diceList = diceWrappers[player].children;
+      
+      diceList[0].innerHTML = `
+         <img src=${this.diceImg[model.dices[0]]} alt=''>
+      `;
+      diceList[1].innerHTML = `
+         <img src=${this.diceImg[model.dices[1]]} alt=''>
+      `;
       this.displayShade(diceWrappers, player);
    },
 
@@ -35,6 +41,19 @@ let view = {
       } else {
          list[0].setAttribute('role', 'active');
       }
+   },
+
+   animateDice: function(player) {
+      const diceWrappers = document.getElementsByClassName('dice-wrapper');
+      const diceImg = diceWrappers[player].childNodes;
+      diceImg[1].setAttribute('class', 'shake');
+      diceImg[3].setAttribute('class', 'shake');
+      setTimeout(function(){
+         diceImg[1].removeAttribute('class', 'shake');
+         diceImg[3].removeAttribute('class', 'shake');
+      },
+      1000
+      );
    },
 
    displayScore: function(player) {
@@ -65,7 +84,9 @@ let view = {
       const drawDiceList = document.getElementsByClassName('draw__dice');
       for (let i = 0; i < drawDiceList.length; i++) {
          if (controller.winnersScores[i]) {
-            drawDiceList[i].innerHTML = controller.winnersScores[i];
+            drawDiceList[i].innerHTML = `
+            <img src=${this.diceImg[controller.winnersScores[i]]} alt=''>
+         `;
          }
       }
       return drawDiceList.length;
@@ -164,13 +185,13 @@ let model = {
    },
    start3Players: function() {
       document.querySelector('.overlay').style.display="none";
-      document.querySelector('#player3').style.display="block";
+      document.querySelector('#player3').style.display="flex";
       model.players.push({score: 0, dice: 0});
    },
    start4Players: function() {
       document.querySelector('.overlay').style.display="none";
       for (let i = 3; i < 5; i++) {
-         document.querySelector(`#player${i}`).style.display="block";
+         document.querySelector(`#player${i}`).style.display="flex";
       }
       model.players.push(
          {score: 0, dice: 0}, 
@@ -180,7 +201,7 @@ let model = {
    start5Players: function() {
       document.querySelector('.overlay').style.display="none";
       for (let i = 3; i < 6; i++) {
-         document.querySelector(`#player${i}`).style.display="block";
+         document.querySelector(`#player${i}`).style.display="flex";
       }
       model.players.push(
          {score: 0, dice: 0}, 
@@ -221,11 +242,16 @@ let controller = {
    },
 
    rollDice: function() {
-      model.sumPlayerScore(controller.player);
-      view.displayResult(controller.player);
-      view.displayScore(controller.player);
-      controller.changePlayer();
-      controller.countClicks();
+      view.animateDice(controller.player);
+      setTimeout(function() {
+         model.sumPlayerScore(controller.player);
+         view.displayResult(controller.player);
+         view.displayScore(controller.player);
+         controller.changePlayer();
+         controller.countClicks();    
+      },
+      1000
+      );
    },
 
    changePlayer: function() {
@@ -243,18 +269,19 @@ let controller = {
 
    resetGame: function() {
       const scoreboardList = document.getElementsByClassName('scoreboard');
-      const diceList = document.getElementsByClassName('dice');
       const rollBtn = document.querySelector('#rollBtn');
       const resetBtn = document.querySelector('#resetBtn');
       const drawPlayers = document.querySelector('#drawPlayers');
+      const diceWrappers = document.getElementsByClassName('dice-wrapper');
 
       for (let i = 0; i < model.players.length; i++) {
+         let diceImg = diceWrappers[i].childNodes;
          model.players[i].score = 0;
          scoreboardList[i].innerHTML = 0;
+         diceImg[1].innerHTML = `<img src='6.svg' alt=''>`;
+         diceImg[3].innerHTML = `<img src='6.svg' alt=''>`;
       }
-      for (let i = 0; i < model.players.length * 2; i++) {
-         diceList[i].innerHTML = `-`;
-      }
+
       document.querySelector('#message').innerHTML = `Player 1 Turn`;
       document.querySelector('#roundEl').innerHTML = `Round # 1`;
 
@@ -381,8 +408,4 @@ function drawNoWinnerMessage(winners) {
       document.querySelector('#message').innerHTML = mainContent;
    }
 }
-
-// model.divideDice(10);
-// model.divideDice(9);
-// model.divideDice(8);
 

@@ -11,8 +11,13 @@ html, body {
     box-sizing: border-box;
 }
 
+img {
+    display: block;
+    width: 100%;
+}
+
 body {
-    padding-top: 50px;
+    padding-top: 10px;
     background-image: linear-gradient(135deg, var(--color-1) , var(--color-2));
     font-family: 'Roboto', sans-serif;
     height: 100vh;
@@ -31,12 +36,19 @@ h2 {
     box-shadow: -2px 6px 18px 3px rgba(0,0,0,0.75);
     padding: 50px;
     padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 .players,
 .draw__players {
     display: flex;
     justify-content: space-around;
+}
+
+.playerEl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .dice,
@@ -55,13 +67,15 @@ h2 {
 .dice-wrapper {
     border-radius: 10px;
     background-color: var(--color-3);
+    width: 100px;
+    display: block;
 }
 
 button {
     color: #fff;
     padding: 20px 30px;
     font-size: 20px;
-    margin: 40px auto;
+    margin: 40px auto 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -144,4 +158,19 @@ button:focus {
     height: 70%;
     background: var(--color-2);
     text-align: center;
+}
+
+.shake {
+    animation: shake .5s infinite;
+}
+@keyframes shake {
+    0% {
+        transform: rotate(8deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(8deg);
+    }
 }
