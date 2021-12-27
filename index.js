@@ -277,9 +277,13 @@ let controller = {
       const drawClose = document.querySelector('#drawClose');
       const drawPlayers = document.querySelector('#drawPlayers');
 
-      let dice = model.getRandomNum();
+      let dice = 0;
       let drawWinnerNum = 0;
       let winners = controller.winners;
+
+      do {
+         dice = model.getRandomNum();
+      } while(dice > 6);
 
       controller.winnersScores.push(dice);
       let winnersQuantity = view.displayDrawDices();
