@@ -19,10 +19,10 @@ let view = {
 
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
-      let diceList = diceWrappers[player].childNodes;
-      // console.log(diceList);
-
-      this.displayShade(diceWrappers, player)
+      let diceList = diceWrappers[player].children;
+      diceList[0].innerHTML = model.dices[0];
+      diceList[1].innerHTML = model.dices[1];
+      this.displayShade(diceWrappers, player);
    },
 
    displayShade: function(list, player) {
@@ -115,8 +115,8 @@ let model = {
             while (firstDice > 6 || secondDice > 6) {
          }
       }
-      this.dices.push(firstDice);
-      this.dices.push(secondDice);
+      this.dices[0] = firstDice;
+      this.dices[1] = secondDice;
    },
 
    sumPlayerScore: function(player) {
