@@ -246,12 +246,13 @@ let controller = {
       const diceList = document.getElementsByClassName('dice');
       const rollBtn = document.querySelector('#rollBtn');
       const resetBtn = document.querySelector('#resetBtn');
-      // const drawEl = document.querySelector('.draw');
       const drawPlayers = document.querySelector('#drawPlayers');
 
       for (let i = 0; i < model.players.length; i++) {
          model.players[i].score = 0;
          scoreboardList[i].innerHTML = 0;
+      }
+      for (let i = 0; i < model.players.length * 2; i++) {
          diceList[i].innerHTML = `-`;
       }
       document.querySelector('#message').innerHTML = `Player 1 Turn`;
