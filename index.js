@@ -7,7 +7,7 @@ window.onload = function() {
    document.querySelector('#drawRoll').addEventListener('click', controller.drawRollDice);
    document.querySelector('#drawClose').addEventListener('click', function() {
       document.querySelector('.draw').style.display="none";
-   })
+   });
 
    document.querySelector('#twoPlayersBtn').addEventListener('click', model.start2Players);
    document.querySelector('#threePlayersBtn').addEventListener('click', model.start3Players);
@@ -185,13 +185,13 @@ let model = {
    },
    start3Players: function() {
       document.querySelector('.overlay').style.display="none";
-      document.querySelector('#player3').style.display="block";
+      document.querySelector('#player3').style.display="flex";
       model.players.push({score: 0, dice: 0});
    },
    start4Players: function() {
       document.querySelector('.overlay').style.display="none";
       for (let i = 3; i < 5; i++) {
-         document.querySelector(`#player${i}`).style.display="block";
+         document.querySelector(`#player${i}`).style.display="flex";
       }
       model.players.push(
          {score: 0, dice: 0}, 
@@ -201,7 +201,7 @@ let model = {
    start5Players: function() {
       document.querySelector('.overlay').style.display="none";
       for (let i = 3; i < 6; i++) {
-         document.querySelector(`#player${i}`).style.display="block";
+         document.querySelector(`#player${i}`).style.display="flex";
       }
       model.players.push(
          {score: 0, dice: 0}, 
@@ -408,8 +408,4 @@ function drawNoWinnerMessage(winners) {
       document.querySelector('#message').innerHTML = mainContent;
    }
 }
-
-// model.divideDice(10);
-// model.divideDice(9);
-// model.divideDice(8);
 
