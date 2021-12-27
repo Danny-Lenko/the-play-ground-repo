@@ -20,10 +20,8 @@ let view = {
 
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
-      let diceList = diceWrappers[player].children;
-      let diceImg = diceWrappers[player].childNodes;
-      this.animateDice(diceImg[1]);
-      this.animateDice(diceImg[3]);
+      const diceList = diceWrappers[player].children;
+      
       diceList[0].innerHTML = `
          <img src=${this.diceImg[model.dices[0]]} alt=''>
       `;
@@ -45,9 +43,17 @@ let view = {
       }
    },
 
-   animateDice: function(item) {
-      item.setAttribute('class', 'shake');
-
+   animateDice: function(player) {
+      const diceWrappers = document.getElementsByClassName('dice-wrapper');
+      const diceImg = diceWrappers[player].childNodes;
+      diceImg[1].setAttribute('class', 'shake');
+      diceImg[3].setAttribute('class', 'shake');
+      setTimeout(function(){
+         diceImg[1].removeAttribute('class', 'shake');
+         diceImg[3].removeAttribute('class', 'shake');
+      },
+      1000
+      );
    },
 
    displayScore: function(player) {
@@ -236,11 +242,16 @@ let controller = {
    },
 
    rollDice: function() {
-      model.sumPlayerScore(controller.player);
-      view.displayResult(controller.player);
-      view.displayScore(controller.player);
-      controller.changePlayer();
-      controller.countClicks();
+      view.animateDice(controller.player);
+      setTimeout(function() {
+         model.sumPlayerScore(controller.player);
+         view.displayResult(controller.player);
+         view.displayScore(controller.player);
+         controller.changePlayer();
+         controller.countClicks();    
+      },
+      1000
+      );
    },
 
    changePlayer: function() {
@@ -258,18 +269,19 @@ let controller = {
 
    resetGame: function() {
       const scoreboardList = document.getElementsByClassName('scoreboard');
-      const diceList = document.getElementsByClassName('dice');
       const rollBtn = document.querySelector('#rollBtn');
       const resetBtn = document.querySelector('#resetBtn');
       const drawPlayers = document.querySelector('#drawPlayers');
+      const diceWrappers = document.getElementsByClassName('dice-wrapper');
 
       for (let i = 0; i < model.players.length; i++) {
+         let diceImg = diceWrappers[i].childNodes;
          model.players[i].score = 0;
          scoreboardList[i].innerHTML = 0;
+         diceImg[1].innerHTML = `<img src='6.svg' alt=''>`;
+         diceImg[3].innerHTML = `<img src='6.svg' alt=''>`;
       }
-      for (let i = 0; i < model.players.length * 2; i++) {
-         diceList[i].innerHTML = `<img src='6.svg' alt=''>`;
-      }
+
       document.querySelector('#message').innerHTML = `Player 1 Turn`;
       document.querySelector('#roundEl').innerHTML = `Round # 1`;
 
