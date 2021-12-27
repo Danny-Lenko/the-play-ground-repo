@@ -19,10 +19,10 @@ let view = {
 
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
-      let diceList = diceWrappers[player].childNodes;
-      // console.log(diceList);
-
-      this.displayShade(diceWrappers, player)
+      let diceList = diceWrappers[player].children;
+      diceList[0].innerHTML = model.dices[0];
+      diceList[1].innerHTML = model.dices[1];
+      this.displayShade(diceWrappers, player);
    },
 
    displayShade: function(list, player) {
@@ -115,8 +115,8 @@ let model = {
             while (firstDice > 6 || secondDice > 6) {
          }
       }
-      this.dices.push(firstDice);
-      this.dices.push(secondDice);
+      this.dices[0] = firstDice;
+      this.dices[1] = secondDice;
    },
 
    sumPlayerScore: function(player) {
@@ -246,12 +246,13 @@ let controller = {
       const diceList = document.getElementsByClassName('dice');
       const rollBtn = document.querySelector('#rollBtn');
       const resetBtn = document.querySelector('#resetBtn');
-      // const drawEl = document.querySelector('.draw');
       const drawPlayers = document.querySelector('#drawPlayers');
 
       for (let i = 0; i < model.players.length; i++) {
          model.players[i].score = 0;
          scoreboardList[i].innerHTML = 0;
+      }
+      for (let i = 0; i < model.players.length * 2; i++) {
          diceList[i].innerHTML = `-`;
       }
       document.querySelector('#message').innerHTML = `Player 1 Turn`;
@@ -276,9 +277,13 @@ let controller = {
       const drawClose = document.querySelector('#drawClose');
       const drawPlayers = document.querySelector('#drawPlayers');
 
-      let dice = model.getRandomNum();
+      let dice = 0;
       let drawWinnerNum = 0;
       let winners = controller.winners;
+
+      do {
+         dice = model.getRandomNum();
+      } while(dice > 6);
 
       controller.winnersScores.push(dice);
       let winnersQuantity = view.displayDrawDices();
