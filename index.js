@@ -21,6 +21,9 @@ let view = {
    displayResult: function(player) {
       const diceWrappers = document.getElementsByClassName('dice-wrapper');
       let diceList = diceWrappers[player].children;
+      let diceImg = diceWrappers[player].childNodes;
+      this.animateDice(diceImg[1]);
+      this.animateDice(diceImg[3]);
       diceList[0].innerHTML = `
          <img src=${this.diceImg[model.dices[0]]} alt=''>
       `;
@@ -40,6 +43,11 @@ let view = {
       } else {
          list[0].setAttribute('role', 'active');
       }
+   },
+
+   animateDice: function(item) {
+      item.setAttribute('class', 'shake');
+
    },
 
    displayScore: function(player) {
@@ -260,7 +268,7 @@ let controller = {
          scoreboardList[i].innerHTML = 0;
       }
       for (let i = 0; i < model.players.length * 2; i++) {
-         diceList[i].innerHTML = `-`;
+         diceList[i].innerHTML = `<img src='6.svg' alt=''>`;
       }
       document.querySelector('#message').innerHTML = `Player 1 Turn`;
       document.querySelector('#roundEl').innerHTML = `Round # 1`;

@@ -60,6 +60,8 @@ h2 {
 .dice-wrapper {
     border-radius: 10px;
     background-color: var(--color-3);
+    width: 100px;
+    display: block;
 }
 
 button {
@@ -149,4 +151,19 @@ button:focus {
     height: 70%;
     background: var(--color-2);
     text-align: center;
+}
+
+.shake {
+    animation: shake .5s infinite;
+}
+@keyframes shake {
+    0% {
+        transform: rotate(8deg);
+    }
+    50% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(8deg);
+    }
 }
